@@ -1,0 +1,27 @@
+﻿<!-- Views/Home/_GamesPartial.cshtml -->
+@model GameViewModel
+
+@if (Model != null && Model.Games != null && Model.Games.Count > 0)
+{
+    <ul class="game-items">
+        @foreach (var game in Model.Games)
+        {
+            <li class="game-item">
+                <div class="game-details">
+                    <strong>@game.Name</strong>
+                    <p>Дата выхода: @(game.ReleaseDate ?? "N/A")</p>
+                    <p>Жанр: @game.Genre</p>
+                    <a href="@game.AppStoreLink">Ссылка в App Store</a>
+                </div>
+                <div class="game-icon">
+                    <!-- Здесь может быть код для вставки иконки, например: -->
+                    <!-- <img src="path_to_icon_image" alt="Game Icon" /> -->
+                </div>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>No games available.</p>
+}

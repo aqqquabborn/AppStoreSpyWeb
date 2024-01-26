@@ -1,0 +1,27 @@
+﻿<!-- Views/Home/Index.cshtml -->
+<!-- Подключение jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+@model GameViewModel
+
+@{
+    ViewData["Title"] = "Новые игры";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div id="games-list" class="game-list">
+    @await Html.PartialAsync("_GamesPartial", Model)
+</div>
+
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            url: '/Home/GetNewGames',
+            type: 'GET',
+            success: function (result) {
+                $('#games-list').html(result);
+            }
+        });
+    });
+</script>
